@@ -1,0 +1,17 @@
+{
+  "name": "vendor_name/terminal",
+  "description": "description",
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  },
+  "require": {
+    "symfony/routing": "^6.1.0",
+    "symfony/http-foundation": "^6.1.0",
+    "ext-pdo": "*"
+  }
+}
+
+
