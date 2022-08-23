@@ -8,10 +8,9 @@ services:
     container_name: terminal-app
     restart: unless-stopped
     working_dir: /var/www/
-    ports:
-      - 8081:80
     volumes:
       - ./:/var/www:z
+      - ./docker-compose/php/php.ini:/usr/local/etc/php/php.ini:z
     networks:
       - terminal
 
@@ -22,10 +21,6 @@ services:
     environment:
       MYSQL_DATABASE: terminal-db
       MYSQL_ROOT_PASSWORD: 123123
-      MYSQL_PASSWORD: 123123
-      MYSQL_USER: terminal_user
-      SERVICE_TAGS: dev
-      SERVICE_NAME: mysql
     ports:
       - 33061:3306
     volumes:

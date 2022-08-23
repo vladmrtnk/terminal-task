@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\ApiTrait;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Exception\MethodNotAllowedException;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
@@ -11,6 +12,8 @@ use Symfony\Component\Routing\RouteCollection;
 
 class Router
 {
+    use ApiTrait;
+
     /**
      * @param  RouteCollection  $routes
      *
@@ -29,9 +32,11 @@ class Router
             call_user_func([$parameters[0], $parameters[1]], end($parameters));
 
         } catch (MethodNotAllowedException $e) {
-            echo 'Route method is not allowed.';
+            $strErrorDesc = 'Route method is not allowed';
+            $this->sendOutput($strErrorDesc, 400);
         } catch (ResourceNotFoundException $e) {
-            echo 'Route does not exists.';
+            $strErrorDesc = 'Route does not exists';
+            $this->sendOutput($strErrorDesc, 404);
         }
     }
 }
